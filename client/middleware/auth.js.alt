@@ -1,0 +1,17 @@
+import { mapState,mapActions } from 'vuex'
+import { ADD_MESSAGE, ADD_NOTIFICATION, SET_USER,USER, SESSION, LOGIN, LOGOUT, LOGIN_SUCCESS, LOGIN_ERROR, LOGIN_FAILED, ISLOGGEDIN} from "~/store/types";
+import stre from '~/store/'
+
+//export default function ({ store, error }) {
+//alternative vuenuxt way to  ensure access    to page is authenticated, just     remove .alt from filename
+  export default function ({ store, redirect }) {
+mapActions(['getLoggedInUser'])
+this.getLoggedInUser()
+if (!store.state.user&&!store.state.user.id&&!store.state.user.email) {
+    /*error({//invokes error page with the followingh params
+      message: 'You are not connected',
+      statusCode: 403
+    })*/
+    return redirect('/vuelogin')
+  }
+}
